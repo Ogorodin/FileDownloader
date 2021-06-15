@@ -1,13 +1,6 @@
 ﻿using AltoHttp;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FileDownloader
@@ -24,7 +17,7 @@ namespace FileDownloader
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            _httpDownloader = new HttpDownloader(txtBoxUrl.Text, $"{Application.StartupPath }\\{Path.GetFileName(txtBoxUrl.Text)}");
+            _httpDownloader = new HttpDownloader(txtBoxUrl.Text, $"{Application.StartupPath }\\{"finished Downloads"}\\{Path.GetFileName(txtBoxUrl.Text)}");
             _httpDownloader.DownloadCompleted += HttpDownloader_DownloadCompleted;
             _httpDownloader.ProgressChanged += HttpDownloader_ProgressChanged;
             _httpDownloader.Start();
@@ -34,7 +27,7 @@ namespace FileDownloader
         {
             this.Invoke((MethodInvoker)delegate
             {
-                lblProgress.Text = "Finish!";
+                lblProgress.Text = "Done!";
                 lblPercent.Text = "100%";
             });
         }
@@ -45,7 +38,7 @@ namespace FileDownloader
             lblPercent.Text = $"{e.Progress.ToString("0.00")} %";
             lblSpeedDisplay.Text = string.Format("{0} MB/s", (e.SpeedInBytes / 1024d / 1024d).ToString("0.00"));
             lblMBDownloaded.Text = string.Format("{0} MB/s", (_httpDownloader.TotalBytesReceived / 1024d / 1024d).ToString("0.00"));
-            lblStatus.Text = "Downloading ...";
+            lblProgress.Text = "Downloading ...";
         }
 
         private void btnPause_Click(object sender, EventArgs e)

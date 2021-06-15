@@ -111,7 +111,7 @@ namespace FileDownloader
             // lblPercent
             // 
             this.lblPercent.AutoSize = true;
-            this.lblPercent.Location = new System.Drawing.Point(762, 87);
+            this.lblPercent.Location = new System.Drawing.Point(753, 82);
             this.lblPercent.Name = "lblPercent";
             this.lblPercent.Size = new System.Drawing.Size(28, 17);
             this.lblPercent.TabIndex = 8;
